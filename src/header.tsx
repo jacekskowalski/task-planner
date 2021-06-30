@@ -5,7 +5,7 @@ const Header =()=>{
         <div className="header">
         <div className="header__nav">
         <a href="#" className="header__logo">
-            Books To Read
+            Task Planner
         </a>
         </div>
     </div>

@@ -226,7 +226,7 @@ a {
   border: none;
   font-size: 1.6rem; }
 
-#dateSelected {
+.dateSelected {
   width: 17rem;
   border: 1px solid #e5e5e5;
   padding-left: 1rem;

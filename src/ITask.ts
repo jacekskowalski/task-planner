@@ -10,6 +10,5 @@ export interface ITask{
     created: string;
     deadline?: string;
     status: Status;
-    etag:string;
     description: string;
 }

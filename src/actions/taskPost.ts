@@ -1,5 +1,5 @@
 
-import fetchDataSuccess, {fetchDataRequest} from "./action";
+import fetchDataSuccess from "./action";
 
     
 export default function taskPost({title,created, deadline, status, description}) {

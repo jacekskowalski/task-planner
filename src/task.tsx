@@ -1,21 +1,21 @@
 
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { ITask, Status } from "./ITask";
+import { Status } from "./ITask";
 import taskGet  from './actions/taskGet';
 import { render } from '@testing-library/react';
-import fetchDataSuccess from './actions/action';
+import taskPost from './actions/taskPost';
 
 export class TaskComponent extends Component<any, any>{
 
     constructor(props:any){
      super(props);
+ 
      this.state={
         correctInput: true,
          created: new Date().toISOString().replace('T', ' ').substring(0, 10),
          title: "",
-      //   deadline: "",
-         etag:"",
+         deadline: "",
          description: "",
          status:""
      }
@@ -31,26 +31,26 @@ export class TaskComponent extends Component<any, any>{
    const status:string= Status.TODO;
    const title:string= this.state.title;
    const created:string= this.state.created;
-  // const deadline:string= this.state.deadline;
-   const etag: string= this.state.etag;
+   const deadline:string= this.state.deadline;
    const description:string= this.state.description;
 
-   if(title.length <5 || description.length < 5 || etag === ""){
+   if(title.length <5 || description.length < 5 || deadline === ""){
     e.preventDefault();
     this.setState({
         correctInput: false
     });
    }
  else{
-    this.props.submitTask({title,created, etag, status, description});
+    this.props.submitTask({title,created, deadline, status, description});
     this.setState({
         correctInput: true,
         title: "",
-        etag: "",
+        deadline: "",
         created: new Date().toISOString().replace('T', ' ').substring(0, 10),
         description:"",
         status:""
     });
+  
     }
   }
   render() {
@@ -62,14 +62,9 @@ export class TaskComponent extends Component<any, any>{
                     onChange={(e) => this.changeValue(e)} required placeholder="Min. 5 characters" minLength={5}/>
             </div>
             <div className="form-group margin-m">
-                {/*
                 <label htmlFor="dateSelected" className="form__label">Deadline:</label>
-                <input type="date" id="dateSelected" name="deadline" className="line-height-medium"
-                    value={this.state.deadline.toString()} onChange={(e) => this.changeValue(e)} />
-                */}
-                 <label htmlFor="etag" className="form__label">ETag:</label>
-                <input type="text" id="etag" name="etag" className="line-height-medium" placeholder="Insert chars"
-                    value={this.state.etag} onChange={(e) => this.changeValue(e)} /> 
+                <input type="text" id="dateSelected" name="deadline" className="line-height-medium dateSelected" onFocus={(e) => e.target.type = 'date'}
+                    value={this.state.deadline.toString()} onChange={(e) => this.changeValue(e)} placeholder="yyyy-mm-dd"/>             
             </div>
             <div className="form-group margin-m">
                 <label htmlFor="dateCreated" className="form__label">Created:</label>
@@ -108,7 +103,7 @@ function mapStateToProps(state: any) {
   const mapDispatchToProps = (dispatch: any) => {
     return {
        getTasks: () => dispatch(taskGet()),
-       submitTask: (val) => dispatch(fetchDataSuccess(val)),
+       submitTask: (val) => dispatch(taskPost(val)),
         dispatch
     };
   }

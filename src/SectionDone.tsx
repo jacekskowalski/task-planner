@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { ITask } from "./ITask";
 import taskGet  from './actions/taskGet';
+
 export class SectionDone extends Component<any, any>{
 
-  
   render() {
     return (
       <div className="section__tasks">
@@ -16,19 +16,14 @@ export class SectionDone extends Component<any, any>{
             <div className="col task__box" key={item.id}>
             <div className="form-group margin-m">
             <label htmlFor={`title${item.id}`} className="form__label">Title:</label>
-                <input type="text" id={`title${item.id}`} name="title" className="form__input form__input-title line-height-medium" value={item.title}
+                <input type="text" id={`title${item.id}`} name={`title${item.id}`} className="form__input form__input-title line-height-medium" value={item.title}
                     disabled={true} />
             </div>
            
             <div className="form-group margin-m font-medium">
-              {/*
             <label htmlFor="dateSelected" className="form__label">Deadline:</label>
-             <input type="date" id="dateSelected" name="deadline" className="line-height-medium"
+             <input type="text" id="dateSelected" name={`deadline${item.id}`} className="line-height-medium dateSelected"
              value={item.deadline.toString()} disabled={true}/>
-              */}
-                <label htmlFor="etag" className="form__label">ETag:</label>
-             <input type="text" id="etag" name="etag" className="line-height-medium"
-             value={item.etag} disabled={true}/>
             </div>
             <div className="form-group margin-m font-medium">
             <label htmlFor={`dateCreated${item.id}`} className="form__label">Created:</label>
@@ -37,8 +32,7 @@ export class SectionDone extends Component<any, any>{
             </div>
             <div className="form-group margin-m font-medium">
             <span className="padding-small font-medium">Status: {item.status}</span>
-            </div>
-            
+            </div>       
             <div className="form-group margin-m font-medium">
             <label htmlFor="desc" className="form__label" >Description:</label>
                 <textarea id="desc" name="description" value={item.description}

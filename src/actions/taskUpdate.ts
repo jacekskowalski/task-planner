@@ -1,9 +1,11 @@
+import { ITask } from "../ITask";
 import putData from "./action";
 
 
-export default function taskUpdate(id:number,title:string, deadline:string,created:string, status:string,description:string){
+export default function taskUpdate({id,title, deadline,created, status,description}){
     return (dispatch: any) => {
-        let itask:any= {};
+        let itask:any= {} as ITask;
+        itask.id=id;
         itask.title = title;
         itask.created = created;
         itask.deadline = deadline;
@@ -22,7 +24,7 @@ export default function taskUpdate(id:number,title:string, deadline:string,creat
         }
         return response.json();
     }).then(json => {
-            dispatch(putData(json));
+            dispatch(putData(itask));
             })
        }
 }
