@@ -1,8 +1,8 @@
 # Task planner
 
-## The simple version of CRUD
+## The simple version of Jira. Tasks are divided into categories. 
 
-## You can add new record, or delete, update
+## CRUD implementation. You can add new record, or delete, update
 
 <h1>Deployment</h1>
 
@@ -23,3 +23,5 @@
 3)Redux
 
 4)Sass
+
+5)json-server
